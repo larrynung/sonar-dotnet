@@ -29,6 +29,10 @@ namespace SonarAnalyzer.Helpers
 {
     internal static class DiagnosticAnalyzerContextHelper
     {
+        static DiagnosticAnalyzerContextHelper()
+        {
+        }
+
         #region Register*ActionInNonGenerated
 
         public static void RegisterSyntaxNodeActionInNonGenerated<TLanguageKindEnum>(
