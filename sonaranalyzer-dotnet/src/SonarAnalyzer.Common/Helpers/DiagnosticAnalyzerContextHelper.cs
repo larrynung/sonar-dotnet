@@ -167,7 +167,8 @@ namespace SonarAnalyzer.Helpers
             Diagnostic diagnostic,
             Compilation compilation)
         {
-            if (!diagnostic.Location.SourceTree.IsGenerated(generatedCodeRecognizer, compilation))
+            if (!diagnostic.Location.SourceTree.IsGenerated(generatedCodeRecognizer, compilation) ||
+                context.Options.ShouldAnalyzeGeneratedCode(context.Compilation.Language))
             {
                 context.ReportDiagnosticWhenActive(diagnostic);
             }
@@ -179,7 +180,8 @@ namespace SonarAnalyzer.Helpers
             Diagnostic diagnostic,
             Compilation compilation)
         {
-            if (!diagnostic.Location.SourceTree.IsGenerated(generatedCodeRecognizer, compilation))
+            if (!diagnostic.Location.SourceTree.IsGenerated(generatedCodeRecognizer, compilation) ||
+                context.Options.ShouldAnalyzeGeneratedCode(context.Compilation.Language))
             {
                 context.ReportDiagnosticWhenActive(diagnostic);
             }
@@ -199,7 +201,6 @@ namespace SonarAnalyzer.Helpers
 
         private static readonly ConditionalWeakTable<Compilation, ConcurrentDictionary<SyntaxTree, bool>> Cache
             = new ConditionalWeakTable<Compilation, ConcurrentDictionary<SyntaxTree, bool>>();
-
 
 
         public static bool IsGenerated(this SyntaxTree tree,
