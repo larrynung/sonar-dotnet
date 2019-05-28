@@ -31,6 +31,8 @@ namespace SonarAnalyzer.Helpers
         internal const string AnalyzeGeneratedCodeCSharp = "sonar.cs.analyzeGeneratedCode";
         internal const string AnalyzeGeneratedCodeVisualBasic = "sonar.vbnet.analyzeGeneratedCode";
 
+        // TODO should make this a singleton class or make sure somehow to not read every time the setting
+
         public static bool ShouldAnalyzeGeneratedCode(this AnalyzerOptions options, string language)
         {
             return ReadProperty(GetSettings(options), GetProperty());
